@@ -63,6 +63,13 @@ Hash = {
   end,
 
   values = function(obj)
+    local output = {}
+
+    for key, value in pairs(obj) do
+      table.insert(output, value)
+    end
+
+    return output
   end,
 
   pick = function(obj, keys)

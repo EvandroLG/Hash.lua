@@ -59,3 +59,13 @@ test('keys should returns a table with all keys of the hash', function()
   assert_equal('b', result[2])
   assert_equal('c', result[3])
 end)
+
+test('values should returns a table with all values of the hash', function()
+  local result = Hash.values({ a = 10, b = 20, c = 30 })
+
+  assert_equal(3, #result)
+  table.sort(result)
+  assert_equal(10, result[1])
+  assert_equal(20, result[2])
+  assert_equal(30, result[3])
+end)
