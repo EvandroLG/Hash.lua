@@ -1,0 +1,51 @@
+local Hash = require 'Hash'
+local format = string.format
+
+function test(name, func)
+  xpcall(function()
+    func()
+    print(format('[pass] %s', name))
+  end, function(err)
+    print(format('[fail] %s : %s', name, err))
+  end)
+end
+
+function _equal(a, b)
+  return a == b
+end
+
+function assert_equal(a, b)
+  assert(_equal(a, b))
+end
+
+test('is_hash should returns false when object is not a table', function()
+  assert_equal(false, Hash.is_hash('lua'))
+end)
+
+test('is_hash should returns false when object is working as a array', function()
+  assert_equal(false, Hash.is_hash({ 1, 3, 4 }))
+end)
+
+test('is_hash should returns false when a item in the table does not have key/value', function()
+  assert_equal(false, Hash.is_hash( { a = 1, b = 2, 3 } ))
+end)
+
+test('is_hash should returns true when table is empty', function()
+  assert_equal(true, Hash.is_hash({}))
+end)
+
+test('is_hash should returns true when table is working as a hash', function()
+  assert_equal(true, Hash.is_hash({ a = 1, b = 2, c = 3 }))
+end)
+
+test('is_empty should returns false when table is working as an array', function()
+  assert_equal(false, Hash.is_empty({ 1, 2, 3 }))
+end)
+
+test('is_empty should returns false when table have at least a key/value', function()
+  assert_equal(false, Hash.is_empty({ a = 1 }))
+end)
+
+test('is_empty should returns true when table do not have any content', function()
+  assert_equal(true, Hash.is_empty({}))
+end)
