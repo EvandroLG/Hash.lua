@@ -69,3 +69,13 @@ test('values should returns a table with all values of the hash', function()
   assert_equal(20, result[2])
   assert_equal(30, result[3])
 end)
+
+test('remove_key should returns false because key does not exist', function()
+  assert_equal(false, Hash.remove_key({ a=1 }, 'b'))
+end)
+
+test('remove_key should returns true and remove key from table', function()
+  local obj = { a=1, b=2 }
+  assert_equal(true, Hash.remove_key(obj, 'b'))
+  assert_equal(nil, obj.b)
+end)

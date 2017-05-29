@@ -72,6 +72,15 @@ Hash = {
     return output
   end,
 
+  remove_key = function(obj, key)
+    if obj[key] then
+      obj[key] = nil
+      return true
+    end
+
+    return false
+  end,
+
   pick = function(obj, keys)
   end,
 }
