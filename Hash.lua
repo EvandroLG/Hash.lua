@@ -82,6 +82,15 @@ Hash = {
   end,
 
   pick = function(obj, keys)
+    local output = {}
+
+    for i=1, #keys do
+      if obj[keys[i]] then
+        output[keys[i]] = obj[keys[i]]
+      end
+    end
+
+    return output
   end,
 }
 

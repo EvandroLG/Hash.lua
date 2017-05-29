@@ -79,3 +79,11 @@ test('remove_key should returns true and remove key from table', function()
   assert_equal(true, Hash.remove_key(obj, 'b'))
   assert_equal(nil, obj.b)
 end)
+
+test('pick should return a table with keys passed in second parameter', function()
+  local result = Hash.pick({ a=1, b=2, c=3 }, { 'a', 'c' })
+
+  assert_equal(1, result.a)
+  assert_equal(3, result.c)
+  assert_equal(nil, result.b)
+end)
