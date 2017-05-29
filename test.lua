@@ -49,3 +49,13 @@ end)
 test('is_empty should returns true when table do not have any content', function()
   assert_equal(true, Hash.is_empty({}))
 end)
+
+test('keys should returns a table with all keys of the hash', function()
+  local result = Hash.keys({ a = 1, b = 2, c = 3 })
+
+  assert_equal(3, #result)
+  table.sort(result)
+  assert_equal('a', result[1])
+  assert_equal('b', result[2])
+  assert_equal('c', result[3])
+end)
