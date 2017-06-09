@@ -87,3 +87,13 @@ test('pick should return a table with keys passed in second parameter', function
   assert_equal(3, result.c)
   assert_equal(nil, result.b)
 end)
+
+test('pick should return a table accourding to callback match', function()
+  local result = Hash.pick({ a=1, b=2, c=3 }, function(key, value)
+    return key == 'a'
+  end)
+
+  assert_equal(1, result.a)
+  assert_equal(nil, result.b)
+  assert_equal(nil, result.c)
+end)

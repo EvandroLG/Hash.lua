@@ -81,12 +81,18 @@ Hash = {
     return false
   end,
 
-  pick = function(obj, keys)
+  pick = function(obj, keys_or_callback)
     local output = {}
 
-    for i=1, #keys do
-      if obj[keys[i]] then
-        output[keys[i]] = obj[keys[i]]
+    if type(keys_or_callback) == 'function' then
+      for k, v in pairs(obj) do
+        if keys_or_callback(k, v) then output[k] = v  end
+      end
+    elseif type(keys_or_callback) == 'table' then
+      for i=1, #keys_or_callback do
+        if obj[keys_or_callback[i]] then
+          output[keys_or_callback[i]] = obj[keys_or_callback[i]]
+        end
       end
     end
 
