@@ -97,3 +97,16 @@ test('pick should return a table accourding to callback match', function()
   assert_equal(nil, result.b)
   assert_equal(nil, result.c)
 end)
+
+test('map should return a table of values by mapping each value in table through a transformation function', function()
+  local result = Hash.map({ a=1, b=2, c=3 }, function(value, key)
+    return value * 2
+  end)
+
+  table.sort(result)
+
+  assert_equal(3, #result)
+  assert_equal(2, result[1])
+  assert_equal(4, result[2])
+  assert_equal(6, result[3])
+end)

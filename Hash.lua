@@ -10,6 +10,24 @@ local function has_key(obj)
   return false
 end
 
+function sorted_iter(obj)
+  local keys = {}
+
+  for k in pairs(obj) do
+    table.insert(keys, k)
+  end
+
+  table.sort(keys)
+
+  return function()
+    local k = table.remove(keys)
+
+    if k ~= nil then
+      return k, obj[k]
+    end
+  end
+end
+
 local Hash = {}
 
 Hash = {
@@ -98,6 +116,16 @@ Hash = {
 
     return output
   end,
+
+  map = function(obj, callback)
+    local output = {}
+
+    for k, v in sorted_iter(obj) do
+      table.insert(output, callback(v, k))
+    end
+
+    return output
+  end
 }
 
 return Hash
