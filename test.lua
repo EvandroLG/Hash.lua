@@ -110,3 +110,20 @@ test('map should return a table of values by mapping each value in table through
   assert_equal(4, result[2])
   assert_equal(6, result[3])
 end)
+
+test('clone should return a new table with the same proprieties of the object passed as parameter', function()
+  local result = Hash.clone({
+    language = 'lua',
+    year = 1993,
+    influences = { 'lisp', 'smalltalk', 'c++', 'awk' }
+  })
+
+  assert_equal('lua', result.language)
+  assert_equal(1993, result.year)
+  assert_equal('table', type(result.influences))
+  assert_equal(4, #result.influences)
+  assert_equal('lisp', result.influences[1])
+  assert_equal('smalltalk', result.influences[2])
+  assert_equal('c++', result.influences[3])
+  assert_equal('awk', result.influences[4])
+end)

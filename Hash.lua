@@ -125,6 +125,18 @@ Hash = {
     end
 
     return output
+  end,
+
+  clone = function(obj)
+    if type(obj) ~= 'table' then return obj end
+
+    local copy = {}
+
+    for k, v in next, obj do
+      copy[k] = Hash.clone(v)
+    end
+
+    return copy
   end
 }
 
