@@ -130,7 +130,7 @@ Hash = {
   copy = function(obj)
     local output = {}
 
-    for k, v in next, obj do
+    for k, v in pairs(obj) do
       output[k] = v
     end
 
@@ -144,6 +144,16 @@ Hash = {
 
     for k, v in next, obj do
       copy[k] = Hash.deep_copy(v)
+    end
+
+    return copy
+  end,
+
+  merge = function(obj1, obj2)
+    local copy = Hash.copy(obj1)
+
+    for k, v in pairs(obj2) do
+      copy[k] = v
     end
 
     return copy

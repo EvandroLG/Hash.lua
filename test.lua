@@ -152,3 +152,15 @@ test('deep_copy should returns a new table with the same proprieties of the obje
   obj.influences.languages[1] = 'scheme'
   assert_equal('lisp', result.influences.languages[1])
 end)
+
+test('merge should returns a new table contaiining the contents from obj2 and the contents of obje1', function()
+  local result = Hash.merge({ name = 'lua', year = 1992 },
+                            { year = 1993, influences = { 'lisp', 'c++', 'awk' } })
+
+  assert_equal('lua', result.name)
+  assert_equal(1993, result.year)
+  assert_equal(3, #result.influences)
+  assert_equal('lisp', result.influences[1])
+  assert_equal('c++', result.influences[2])
+  assert_equal('awk', result.influences[3])
+end)
