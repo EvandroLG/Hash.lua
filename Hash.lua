@@ -160,6 +160,9 @@ Hash = {
   end,
 
   merge = function(obj1, obj2)
+    assert(Hash.is_hash(obj1), "copy method expects two hashes")
+    assert(Hash.is_hash(obj2), "copy method expects two hashes")
+
     local copy = Hash.copy(obj1)
 
     for k, v in pairs(obj2) do
