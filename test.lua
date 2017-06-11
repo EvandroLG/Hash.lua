@@ -80,7 +80,7 @@ test('remove_key should returns true and remove key from table', function()
   assert_equal(nil, obj.b)
 end)
 
-test('pick should return a table with keys passed in second parameter', function()
+test('pick should returns a table with keys passed in second parameter', function()
   local result = Hash.pick({ a=1, b=2, c=3 }, { 'a', 'c' })
 
   assert_equal(1, result.a)
@@ -88,7 +88,7 @@ test('pick should return a table with keys passed in second parameter', function
   assert_equal(nil, result.b)
 end)
 
-test('pick should return a table accourding to callback match', function()
+test('pick should returns a table accourding to callback match', function()
   local result = Hash.pick({ a=1, b=2, c=3 }, function(key, value)
     return key == 'a'
   end)
@@ -98,7 +98,7 @@ test('pick should return a table accourding to callback match', function()
   assert_equal(nil, result.c)
 end)
 
-test('map should return a table of values by mapping each value in table through a transformation function', function()
+test('map should returns a table of values by mapping each value in table through a transformation function', function()
   local result = Hash.map({ a=1, b=2, c=3 }, function(value, key)
     return value * 2
   end)
@@ -111,19 +111,44 @@ test('map should return a table of values by mapping each value in table through
   assert_equal(6, result[3])
 end)
 
-test('clone should return a new table with the same proprieties of the object passed as parameter', function()
-  local result = Hash.clone({
+test('copy should returns a new table with the same proprieties of the object passed as parameter', function()
+  local obj = {
     language = 'lua',
     year = 1993,
-    influences = { 'lisp', 'smalltalk', 'c++', 'awk' }
-  })
+    influences = { languages = { 'lisp', 'smalltalk', 'c++', 'awk' } },
+  }
+
+  local result = Hash.copy(obj)
 
   assert_equal('lua', result.language)
   assert_equal(1993, result.year)
   assert_equal('table', type(result.influences))
-  assert_equal(4, #result.influences)
-  assert_equal('lisp', result.influences[1])
-  assert_equal('smalltalk', result.influences[2])
-  assert_equal('c++', result.influences[3])
-  assert_equal('awk', result.influences[4])
+  assert_equal(4, #result.influences.languages)
+  assert_equal('lisp', result.influences.languages[1])
+  assert_equal('smalltalk', result.influences.languages[2])
+  assert_equal('c++', result.influences.languages[3])
+  assert_equal('awk', result.influences.languages[4])
+  obj.influences.languages[1] = 'scheme'
+  assert_equal('scheme', result.influences.languages[1])
+end)
+
+test('deep_copy should returns a new table with the same proprieties of the object passed as parameter using deep algorithm', function()
+  local obj = {
+    language = 'lua',
+    year = 1993,
+    influences = { languages = { 'lisp', 'smalltalk', 'c++', 'awk' } },
+  }
+
+  local result = Hash.deep_copy(obj)
+
+  assert_equal('lua', result.language)
+  assert_equal(1993, result.year)
+  assert_equal('table', type(result.influences))
+  assert_equal(4, #result.influences.languages)
+  assert_equal('lisp', result.influences.languages[1])
+  assert_equal('smalltalk', result.influences.languages[2])
+  assert_equal('c++', result.influences.languages[3])
+  assert_equal('awk', result.influences.languages[4])
+  obj.influences.languages[1] = 'scheme'
+  assert_equal('lisp', result.influences.languages[1])
 end)

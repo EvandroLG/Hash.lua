@@ -127,13 +127,23 @@ Hash = {
     return output
   end,
 
-  clone = function(obj)
+  copy = function(obj)
+    local output = {}
+
+    for k, v in next, obj do
+      output[k] = v
+    end
+
+    return  output
+  end,
+
+  deep_copy = function(obj)
     if type(obj) ~= 'table' then return obj end
 
     local copy = {}
 
     for k, v in next, obj do
-      copy[k] = Hash.clone(v)
+      copy[k] = Hash.deep_copy(v)
     end
 
     return copy
