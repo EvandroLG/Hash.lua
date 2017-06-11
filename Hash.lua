@@ -157,6 +157,12 @@ Hash = {
     end
 
     return copy
+  end,
+
+  each = function(obj, callback)
+    for k, v in pairs(obj) do
+      callback(k, v)
+    end
   end
 }
 

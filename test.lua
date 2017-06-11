@@ -164,3 +164,14 @@ test('merge should returns a new table contaiining the contents from obj2 and th
   assert_equal('c++', result.influences[2])
   assert_equal('awk', result.influences[3])
 end)
+
+test('each should calls the function once for every key in table, passing key and value as parameters', function()
+  local result = {}
+  Hash.each({ a=1, b=2, c=3 }, function(k, v)
+    result[k] = v
+  end)
+
+  assert_equal(1, result.a)
+  assert_equal(2, result.b)
+  assert_equal(3, result.c)
+end)
