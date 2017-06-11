@@ -71,6 +71,8 @@ Hash = {
   end,
 
   keys = function(obj)
+    assert(Hash.is_hash(obj), "keys method expects a hash")
+
     local output = {}
 
     for key in pairs(obj) do
@@ -81,6 +83,8 @@ Hash = {
   end,
 
   values = function(obj)
+    assert(Hash.is_hash(obj), "values method expects a hash")
+
     local output = {}
 
     for key, value in pairs(obj) do
@@ -91,6 +95,8 @@ Hash = {
   end,
 
   remove_key = function(obj, key)
+    assert(Hash.is_hash(obj), "remove_key method expects a hash")
+
     if obj[key] then
       obj[key] = nil
       return true
@@ -118,6 +124,8 @@ Hash = {
   end,
 
   map = function(obj, callback)
+    assert(Hash.is_hash(obj), "map method expects a hash")
+
     local output = {}
 
     for k, v in sorted_iter(obj) do
@@ -128,6 +136,8 @@ Hash = {
   end,
 
   copy = function(obj)
+    assert(Hash.is_hash(obj), "copy method expects a hash")
+
     local output = {}
 
     for k, v in pairs(obj) do
@@ -160,6 +170,8 @@ Hash = {
   end,
 
   each = function(obj, callback)
+    assert(Hash.is_hash(obj), "each method expects a hash")
+
     for k, v in pairs(obj) do
       callback(k, v)
     end
