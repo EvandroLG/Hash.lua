@@ -75,9 +75,13 @@ test('remove_key should returns false because key does not exist', function()
 end)
 
 test('remove_key should returns true and remove key from table', function()
-  local obj = { a=1, b=2 }
+  local obj = { a=1, b=2, c=false }
+
   assert_equal(true, Hash.remove_key(obj, 'b'))
   assert_equal(nil, obj.b)
+
+  assert_equal(true, Hash.remove_key(obj, 'c'))
+  assert_equal(nil, obj.c)
 end)
 
 test('pick should returns a table with keys passed in second parameter', function()

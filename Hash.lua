@@ -16,7 +16,7 @@ local function has_key(obj)
   return false
 end
 
-function sorted_iter(obj)
+local function sorted_iter(obj)
   local keys = {}
 
   for k in pairs(obj) do
@@ -77,7 +77,7 @@ Hash = {
   end,
 
   keys = function(obj)
-    assert(Hash.is_hash(obj), "keys method expects a hash")
+    assert(Hash.is_hash(obj), 'keys method expects a hash')
 
     local output = {}
 
@@ -89,7 +89,7 @@ Hash = {
   end,
 
   values = function(obj)
-    assert(Hash.is_hash(obj), "values method expects a hash")
+    assert(Hash.is_hash(obj), 'values method expects a hash')
 
     local output = {}
 
@@ -101,9 +101,9 @@ Hash = {
   end,
 
   remove_key = function(obj, key)
-    assert(Hash.is_hash(obj), "remove_key method expects a hash")
+    assert(Hash.is_hash(obj), 'remove_key method expects a hash')
 
-    if obj[key] then
+    if obj[key] ~= nil then
       obj[key] = nil
       return true
     end
@@ -130,7 +130,7 @@ Hash = {
   end,
 
   map = function(obj, callback)
-    assert(Hash.is_hash(obj), "map method expects a hash")
+    assert(Hash.is_hash(obj), 'map method expects a hash')
 
     local output = {}
 
@@ -142,7 +142,7 @@ Hash = {
   end,
 
   copy = function(obj)
-    assert(Hash.is_hash(obj), "copy method expects a hash")
+    assert(Hash.is_hash(obj), 'copy method expects a hash')
 
     local output = {}
 
@@ -166,8 +166,8 @@ Hash = {
   end,
 
   merge = function(obj1, obj2)
-    assert(Hash.is_hash(obj1), "copy method expects two hashes")
-    assert(Hash.is_hash(obj2), "copy method expects two hashes")
+    assert(Hash.is_hash(obj1), 'merge method expects two hashes')
+    assert(Hash.is_hash(obj2), 'merge method expects two hashes')
 
     local copy = Hash.copy(obj1)
 
@@ -179,7 +179,7 @@ Hash = {
   end,
 
   each = function(obj, callback)
-    assert(Hash.is_hash(obj), "each method expects a hash")
+    assert(Hash.is_hash(obj), 'each method expects a hash')
 
     for k, v in pairs(obj) do
       callback(k, v)
