@@ -1,5 +1,5 @@
-package = 'array'
-version = '1.2.0-0'
+package = 'hash'
+version = '1.0.0-0'
 
 source = {
   url = 'git://github.com/evandrolg/Hash.lua.git',
