@@ -22,14 +22,6 @@ test('is_hash should returns false when object is not a table', function()
   assert_equal(false, Hash.is_hash('lua'))
 end)
 
-test('is_hash should returns false when object is working as a array', function()
-  assert_equal(false, Hash.is_hash({ 1, 3, 4 }))
-end)
-
-test('is_hash should returns false when a item in the table does not have key/value', function()
-  assert_equal(false, Hash.is_hash( { a = 1, b = 2, 3 } ))
-end)
-
 test('is_hash should returns true when table is empty', function()
   assert_equal(true, Hash.is_hash({}))
 end)

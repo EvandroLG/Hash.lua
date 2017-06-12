@@ -4,10 +4,6 @@
 --License: MIT
 
 
-local function is_table(obj)
-  return type(obj) == 'table'
-end
-
 local function has_key(obj)
   for _ in pairs(obj) do
     return true
@@ -60,16 +56,7 @@ Hash = {
   ]],
 
   is_hash = function(obj)
-    if not is_table(obj) then return false end
-
-    local i = 0
-
-    for _ in pairs(obj) do
-      i = i + 1
-      if obj[i] ~= nil then return false end
-    end
-
-    return true
+    return type(obj) == 'table'
   end,
 
   is_empty = function(obj)
