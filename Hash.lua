@@ -1,3 +1,9 @@
+--Hash.lua
+--author: Evandro Leopoldino Gonçalves <evandrolgoncalves@gmail.com>
+--https://github.com/evandrolg
+--License: MIT
+
+
 local function is_table(obj)
   return type(obj) == 'table'
 end
