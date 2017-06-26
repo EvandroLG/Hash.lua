@@ -1,6 +1,6 @@
 # Hash.lua
 
-Library with useful methods to handle a Lua's table when it's working as a Hash.
+Library with useful methods to handle Lua's table when it's working as a Hash.
 
 ## Installation
 To install Hash.lua, run:
