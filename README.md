@@ -2,6 +2,9 @@
 
 Library with useful methods to handle Lua's table when it's working as a Hash.
 
+[![Build
+Status](https://travis-ci.org/EvandroLG/Hash.lua.svg?branch=master)](https://travis-ci.org/EvandroLG/Hash.lua)
+
 ## Installation
 To install Hash.lua, run:
 ```sh
