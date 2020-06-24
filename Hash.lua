@@ -1,9 +1,3 @@
---Hash.lua
---author: Evandro Leopoldino Gonçalves <evandrolgoncalves@gmail.com>
---https://github.com/evandrolg
---License: MIT
-
-
 local function has_key(obj)
   for _ in pairs(obj) do
     return true
@@ -171,6 +165,18 @@ Hash = {
     for k, v in pairs(obj) do
       callback(k, v)
     end
+  end,
+
+  size = function(obj)
+    assert(Hash.is_hash(obj), 'each method expects a hash')
+
+    local count = 0
+
+    for k, v in pairs(obj) do
+      count = count + 1
+    end
+
+    return count
   end
 }
 
