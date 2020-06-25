@@ -46,3 +46,6 @@ Removes the key from the table; returns true if it was found and removed, otherw
 
 * Hash.<code>values(object:table):table</code><br />
 Returns a new table populated with the all values from the table passed as paramter.
+
+* Hash.<code>size(object:table):number</code><br />
+Returns the number of items in the table

@@ -27,7 +27,7 @@ end
 local Hash = {}
 
 Hash = {
-  __VERSION = '1.0.0',
+  __VERSION = '1.0.1',
   __DESCRIPTION = "A small library with useful methods to handle Lua's table when it's working like a Hash",
   __LICENCE = [[
   The MIT License (MIT)
