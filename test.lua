@@ -46,21 +46,17 @@ test('remove_key', function(a)
 end)
 
 test('pick', function(a)
-  local result = Hash.pick({ a=1, b=2, c=3 }, { 'a', 'c' })
+  a.deep_equal(
+    Hash.pick({ a=1, b=2, c=3 }, { 'a', 'c' }),
+    { ['a'] = 1, ['b'] = nil, ['c'] = 3 }
+  )
 
-  a.equal(1, result.a)
-  a.equal(3, result.c)
-  a.equal(nil, result.b)
-end)
-
-test('pick should returns a table accourding to callback match', function(a)
-  local result = Hash.pick({ a=1, b=2, c=3 }, function(key, value)
-    return key == 'a'
-  end)
-
-  a.equal(1, result.a)
-  a.equal(nil, result.b)
-  a.equal(nil, result.c)
+  a.deep_equal(
+    Hash.pick({ a=1, b=2, c=3 }, function(key, value)
+      return key == 'a'
+    end),
+    { ['a'] = 1, ['b'] = nil, ['c'] = nil }
+  )
 end)
 
 test('map', function(a)
