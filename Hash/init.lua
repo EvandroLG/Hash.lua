@@ -1,36 +1,4 @@
-local function has_key(obj)
-  for _ in pairs(obj) do
-    return true
-  end
-
-  return false
-end
-
-local function sorted_iter(obj)
-  local keys = {}
-
-  for k in pairs(obj) do
-    table.insert(keys, k)
-  end
-
-  table.sort(keys)
-
-  return function()
-    local k = table.remove(keys)
-
-    if k ~= nil then
-      return k, obj[k]
-    end
-  end
-end
-
-local function includes(list, value)
-  for k=1, #list do
-    if list[k] == value then return true end
-  end
-
-  return false
-end
+local utils = require('Hash.utils')
 
 local Hash = {}
 
@@ -62,7 +30,7 @@ Hash = {
   end,
 
   is_empty = function(obj)
-    return Hash.is_hash(obj) and not has_key(obj)
+    return Hash.is_hash(obj) and not utils.has_key(obj)
   end,
 
   keys = function(obj)
@@ -123,7 +91,7 @@ Hash = {
 
     local output = {}
 
-    for k, v in sorted_iter(obj) do
+    for k, v in utils.sorted_iter(obj) do
       table.insert(output, callback(v, k))
     end
 
@@ -191,7 +159,7 @@ Hash = {
     local result = {}
 
     for k, v in pairs(obj) do
-      if not includes(keys, k) then
+      if not utils.includes(keys, k) then
         result[k] = v
       end
     end
