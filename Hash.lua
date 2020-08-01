@@ -24,6 +24,14 @@ local function sorted_iter(obj)
   end
 end
 
+local function includes(list, value)
+  for k=1, #list do
+    if list[k] == value then return true end
+  end
+
+  return false
+end
+
 local Hash = {}
 
 Hash = {
@@ -177,6 +185,18 @@ Hash = {
     end
 
     return count
+  end,
+
+  omit = function(obj, keys)
+    local result = {}
+
+    for k, v in pairs(obj) do
+      if not includes(keys, k) then
+        result[k] = v
+      end
+    end
+
+    return result
   end
 }
 

@@ -148,3 +148,13 @@ test('size', function(a)
     0
   )
 end)
+
+test('omit', function(a)
+  a.deep_equal(
+    Hash.omit(
+      { language = 'Lua', version = '5.4.0', creation_date = 1993, paradigms = { 'procedural', 'functional', 'object-oriented' } },
+      { 'version', 'creation_date' }
+    ),
+    { language = 'Lua', paradigms = { 'procedural', 'functional', 'object-oriented' } }
+  )
+end)
