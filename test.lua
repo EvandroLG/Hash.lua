@@ -150,11 +150,27 @@ test('size', function(a)
 end)
 
 test('omit', function(a)
+  local obj = {
+    language = 'Lua',
+    version = '5.4.0',
+    creation_date = 1993,
+    paradigms = { 'procedural', 'functional', 'object-oriented' }
+  }
+
   a.deep_equal(
     Hash.omit(
-      { language = 'Lua', version = '5.4.0', creation_date = 1993, paradigms = { 'procedural', 'functional', 'object-oriented' } },
+      obj,
       { 'version', 'creation_date' }
     ),
     { language = 'Lua', paradigms = { 'procedural', 'functional', 'object-oriented' } }
+  )
+
+  a.deep_equal(
+    Hash.omit(
+      obj,
+      function(v) return type(v) == 'number' end
+    ),
+
+    { creation_date = 1993 }
   )
 end)

@@ -155,12 +155,18 @@ Hash = {
     return count
   end,
 
-  omit = function(obj, keys)
+  omit = function(obj, keys_or_callback)
     local result = {}
 
-    for k, v in pairs(obj) do
-      if not utils.includes(keys, k) then
-        result[k] = v
+    if type(keys_or_callback) == 'function' then
+      for k, v in pairs(obj) do
+        if keys_or_callback(v, k) then result[k] = v end
+      end
+    elseif type(keys_or_callback) == 'table' then
+      for k, v in pairs(obj) do
+        if not utils.includes(keys_or_callback, k) then
+          result[k] = v
+        end
       end
     end
 
