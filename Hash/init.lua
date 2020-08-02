@@ -171,6 +171,14 @@ Hash = {
     end
 
     return result
+  end,
+
+  find = function(obj, callback)
+    for k, v in pairs(obj) do
+      if callback(v, k) then return v end
+    end
+
+    return nil
   end
 }
 

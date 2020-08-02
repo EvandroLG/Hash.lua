@@ -174,3 +174,48 @@ test('omit', function(a)
     { creation_date = 1993 }
   )
 end)
+
+test('find', function(a)
+  local users = {
+    {
+      user = 'evandrolg',
+      age = 33,
+      active = true,
+    },
+
+    {
+      user = 'dan_abramov',
+      age = 30,
+      active = true,
+    },
+
+    {
+      user = 'hswolff',
+      age = 35,
+      active = false,
+    }
+  }
+
+  a.deep_equal(
+    Hash.find(users, function(o) return o.active end),
+    {
+      user = 'evandrolg',
+      age = 33,
+      active = true,
+    }
+  )
+
+  a.deep_equal(
+    Hash.find(users, function(o) return not o.active end),
+    {
+      user = 'hswolff',
+      age = 35,
+      active = false,
+    }
+  )
+
+  a.equal(
+    Hash.find(users, function(o) return o.age > 35 end),
+    nil
+  )
+end)
