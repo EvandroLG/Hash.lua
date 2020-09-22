@@ -231,6 +231,21 @@ Hash = {
     end
 
     return nil
+  end,
+
+  -- Creates a new table composed of the inverted keys and values of the table passed by parameter
+  -- @param object {table}
+  -- @return {table}
+  invert = function(obj)
+    assert(Hash.is_hash(obj), 'invert method expects a hash')
+
+    local output = {}
+
+    for k, v in pairs(obj) do
+      output[v] = k
+    end
+
+    return output
   end
 }
 

@@ -219,3 +219,10 @@ test('find', function(a)
     nil
   )
 end)
+
+test('invert', function(a)
+  a.deep_equal(
+    Hash.invert({ name = 'Evandro', age = 33 }),
+    { Evandro = 'name', [33] = 'age' }
+  )
+end)
