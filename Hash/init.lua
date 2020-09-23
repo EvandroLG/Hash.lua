@@ -246,6 +246,26 @@ Hash = {
     end
 
     return output
+  end,
+
+  isCyclic = function(obj)
+    local seen = {}
+
+    if type(obj) == 'table' then
+      if utils.includes(seen, obj) then
+        return true
+      end
+    end
+
+    table.insert(seen, obj)
+
+    for k, v in pairs(obj) do
+      if Hash.isCyclic(obj[k]) then
+        return true
+      end
+    end
+
+    return false
   end
 }
 
