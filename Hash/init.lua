@@ -248,24 +248,29 @@ Hash = {
     return output
   end,
 
-  isCyclic = function(obj)
+  -- Checks if Hash has circular references
+  -- @param object {table}
+  -- @return {boolean}
+  is_cyclic = function(obj)
     local seen = {}
 
-    if type(obj) == 'table' then
-      if utils.includes(seen, obj) then
+    function verify(_obj)
+      if type(_obj) == 'table' and utils.includes(seen, _obj) then
         return true
       end
-    end
 
-    table.insert(seen, obj)
+      table.insert(seen, _obj)
 
-    for k, v in pairs(obj) do
-      if Hash.isCyclic(obj[k]) then
-        return true
+      for k, v in pairs(_obj) do
+        if verify(_obj) then
+          return true
+        end
       end
+
+      return false
     end
 
-    return false
+    return verify(obj)
   end
 }
 
