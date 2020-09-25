@@ -255,15 +255,17 @@ Hash = {
     local seen = {}
 
     function verify(_obj)
-      if type(_obj) == 'table' and utils.includes(seen, _obj) then
-        return true
-      end
-
-      table.insert(seen, _obj)
-
-      for k, v in pairs(_obj) do
-        if verify(_obj) then
+      if type(_obj) == 'table' then
+        if utils.includes(seen, _obj) then
           return true
+        end
+
+        table.insert(seen, _obj)
+
+        for k, v in pairs(_obj) do
+          if verify(v) then
+            return true
+          end
         end
       end
 
