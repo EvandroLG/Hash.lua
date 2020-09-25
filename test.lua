@@ -226,3 +226,15 @@ test('invert', function(a)
     { Evandro = 'name', [33] = 'age' }
   )
 end)
+
+test('is_cyclic', function(a)
+  local _ = {}
+  _.b = _
+  a.ok(Hash.is_cyclic(_))
+  a.not_ok(Hash.is_cyclic({ a = true }))
+  a.not_ok(Hash.is_cyclic({ b = { c = 5 } }))
+
+  local _ = {}
+  _.b = { a = _ }
+  a.ok(Hash.is_cyclic(_))
+end)
