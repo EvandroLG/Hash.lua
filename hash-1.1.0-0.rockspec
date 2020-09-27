@@ -1,9 +1,9 @@
 package = 'hash'
-version = '1.0.2-0'
+version = '1.1.0-0'
 
 source = {
   url = 'git://github.com/evandrolg/Hash.lua.git',
-  tag = 'v1.0.2'
+  tag = 'v1.1.0'
 }
 
 description = {
@@ -20,6 +20,7 @@ dependencies = {
 build = {
   type = "builtin",
   modules = {
-    ['Hash'] = "Hash.lua"
+    ['Hash'] = "src/Hash/init.lua",
+    ['Hash.utils'] = "src/Hash/utils.lua"
   }
 }
