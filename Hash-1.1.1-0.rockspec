@@ -1,9 +1,9 @@
-package = 'hash'
-version = '1.1.0-0'
+package = 'Hash'
+version = '1.1.1-0'
 
 source = {
   url = 'git://github.com/evandrolg/Hash.lua.git',
-  tag = 'v1.1.0'
+  tag = 'v1.1.1'
 }
 
 description = {
