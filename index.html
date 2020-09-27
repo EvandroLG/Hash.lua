@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Hash.lua</title>
+    <style>
+      :root {
+        --shadow: 0 0 0.5rem #9da5ab;
+        --colorDefault: #030303;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        overflow: hidden;
+        margin: 0;
+        font-family: Helvetica, Arial, sans-serif;
+        color: var(--colorDefault);
+      }
+
+      h1, h2, p {
+        margin: 0;
+        word-break: break-word;
+      }
+
+      code {
+        font-family: Consolas, Source Code Pro, Courier New;
+      }
+
+      ul {
+        padding: 0;
+        list-style: none;
+      }
+
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      a {
+        font-size: 1rem;
+        color: #606060;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--colorDefault);
+      }
+
+      .fork-me {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      .wrapper {
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .menu {
+        overflow-y: auto;
+        flex-basis: 20%;
+        box-shadow: var(--shadow);
+        height: 100vh;
+        padding: 1rem 1rem 0 1rem;
+      }
+
+      .menu > ul > li {
+        padding-bottom: 1rem;
+      }
+
+      main {
+        flex-basis: 80%;
+        padding: 2rem;
+        overflow-y: auto;
+        height: 100vh;
+        font-size: 1rem;
+      }
+
+      main h1 {
+        display: none;
+      }
+
+      main h2 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+
+      main > div {
+        margin-bottom: 2rem;
+      }
+
+      @media (max-width: 480px)  {
+        .menu {
+          display: none;
+        }
+
+        main {
+          flex-basis: 100%;
+          padding: 1rem;
+        }
+
+        main h1 {
+          display: block;
+          margin: 2rem 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="https://github.com/EvandroLG/Hash.lua" class="fork-me">
+      <img src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+    </a>
+    <div class="wrapper">
+      <div class="menu">
+        <h1>Hash.lua</h1>
+        <ul>
+            <li>
+              <a href="#copy">
+                Hash.copy
+              </a>
+            </li>
+            <li>
+              <a href="#deep_copy">
+                Hash.deep_copy
+              </a>
+            </li>
+            <li>
+              <a href="#each">
+                Hash.each
+              </a>
+            </li>
+            <li>
+              <a href="#find">
+                Hash.find
+              </a>
+            </li>
+            <li>
+              <a href="#invert">
+                Hash.invert
+              </a>
+            </li>
+            <li>
+              <a href="#is_cyclic">
+                Hash.is_cyclic
+              </a>
+            </li>
+            <li>
+              <a href="#is_empty">
+                Hash.is_empty
+              </a>
+            </li>
+            <li>
+              <a href="#is_hash">
+                Hash.is_hash
+              </a>
+            </li>
+            <li>
+              <a href="#keys">
+                Hash.keys
+              </a>
+            </li>
+            <li>
+              <a href="#map">
+                Hash.map
+              </a>
+            </li>
+            <li>
+              <a href="#merge">
+                Hash.merge
+              </a>
+            </li>
+            <li>
+              <a href="#omit">
+                Hash.omit
+              </a>
+            </li>
+            <li>
+              <a href="#pick">
+                Hash.pick
+              </a>
+            </li>
+            <li>
+              <a href="#remove_key">
+                Hash.remove_key
+              </a>
+            </li>
+            <li>
+              <a href="#size">
+                Hash.size
+              </a>
+            </li>
+            <li>
+              <a href="#values">
+                Hash.values
+              </a>
+            </li>
+        </ul>
+      </div>
+
+      <main>
+          <div id="copy">
+            <h2>
+              <code>Hash.copy(object:table):table</code>
+            </h2>
+            <p>Makes a shallow copy of the table passed by parameter.</p>
+          </div>
+          <div id="deep_copy">
+            <h2>
+              <code>Hash.deep_copy(object:table):table</code>
+            </h2>
+            <p>Makes a deep copy of the table passed by parameter.</p>
+          </div>
+          <div id="each">
+            <h2>
+              <code>Hash.each(object:table):nil</code>
+            </h2>
+            <p>Iterates over a table, yielding each in turn to an iteratee function.</p>
+          </div>
+          <div id="find">
+            <h2>
+              <code>Hash.find(object:table,callback:table|function):any</code>
+            </h2>
+            <p>Returns the value of the first item that satisfies the provided testing function.</p>
+          </div>
+          <div id="invert">
+            <h2>
+              <code>Hash.invert(object:table):table</code>
+            </h2>
+            <p>Creates a new table composed of the inverted keys and values of the table passed by parameter</p>
+          </div>
+          <div id="is_cyclic">
+            <h2>
+              <code>Hash.is_cyclic(object:table):boolean</code>
+            </h2>
+            <p>Checks if table has circular references</p>
+          </div>
+          <div id="is_empty">
+            <h2>
+              <code>Hash.is_empty(object:table):boolean</code>
+            </h2>
+            <p>Checks if table is empty.</p>
+          </div>
+          <div id="is_hash">
+            <h2>
+              <code>Hash.is_hash(object:table):boolean</code>
+            </h2>
+            <p>Verifies if table works like an object.</p>
+          </div>
+          <div id="keys">
+            <h2>
+              <code>Hash.keys(object:table):table</code>
+            </h2>
+            <p>Returns a new table populated with the all keys from the table passed as parameter.</p>
+          </div>
+          <div id="map">
+            <h2>
+              <code>Hash.map(object:table,callback:function):table</code>
+            </h2>
+            <p>Returns a new table of values by mapping each value in table through a transformation function.</p>
+          </div>
+          <div id="merge">
+            <h2>
+              <code>Hash.merge(object1:table,object2:table):table</code>
+            </h2>
+            <p>Returns a new table containing the contents of &#x60;object1&#x60; and &#x60;object2&#x60;.</p>
+          </div>
+          <div id="omit">
+            <h2>
+              <code>Hash.omit(object:table,keys:table|function):table</code>
+            </h2>
+            <p>Returns a copy of the object passed by parameter omitting the keys decided in the second parameter.</p>
+          </div>
+          <div id="pick">
+            <h2>
+              <code>Hash.pick(object:table,keys:table|function):table</code>
+            </h2>
+            <p>Returns a new table filtered only with values for the keys passed by parameter. Alternatively it accepts a callback where you can filter which keys to pick.</p>
+          </div>
+          <div id="remove_key">
+            <h2>
+              <code>Hash.remove_key(object:table,key:string):boolean</code>
+            </h2>
+            <p>Removes the key from the table; returns true if it was found and removed, otherwise it returns false.</p>
+          </div>
+          <div id="size">
+            <h2>
+              <code>Hash.size(object:table):number</code>
+            </h2>
+            <p>Iterates over a table, yielding each in turn to an iteratee function.</p>
+          </div>
+          <div id="values">
+            <h2>
+              <code>Hash.values(object:table):table</code>
+            </h2>
+            <p>Returns a new table populated with the all values from the table passed as paramter.</p>
+          </div>
+      </main>
+    </div>
+  </body>
+</html>
