@@ -248,7 +248,7 @@ Hash = {
     return output
   end,
 
-  -- Checks if Hash has circular references
+  -- Checks if table has circular references
   -- @param object {table}
   -- @return {boolean}
   is_cyclic = function(obj)
