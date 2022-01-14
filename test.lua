@@ -227,14 +227,14 @@ test('invert', function(a)
   )
 end)
 
-test('is_cyclic', function(a)
+test('is_circular', function(a)
   local _ = {}
   _.b = _
-  a.ok(Hash.is_cyclic(_))
-  a.not_ok(Hash.is_cyclic({ a = true }))
-  a.not_ok(Hash.is_cyclic({ b = { c = 5 } }))
+  a.ok(Hash.is_circular(_))
+  a.not_ok(Hash.is_circular({ a = true }))
+  a.not_ok(Hash.is_circular({ b = { c = 5 } }))
 
   local _ = {}
   _.b = { a = _ }
-  a.ok(Hash.is_cyclic(_))
+  a.ok(Hash.is_circular(_))
 end)

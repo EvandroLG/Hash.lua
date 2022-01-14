@@ -251,28 +251,30 @@ Hash = {
   -- Checks if table has circular references
   -- @param object {table}
   -- @return {boolean}
-  is_cyclic = function(obj)
+  is_circular = function(obj)
     local seen = {}
 
-    function verify(_obj)
-      if type(_obj) == 'table' then
-        if utils.includes(seen, _obj) then
+    function traverse(value)
+      if type(value) ~= 'table' then
+        return false
+      end
+
+      if seen[value] then
+        return true
+      end
+
+      seen[value] = true
+
+      for k, v in pairs(value) do
+        if traverse(v) then
           return true
-        end
-
-        table.insert(seen, _obj)
-
-        for k, v in pairs(_obj) do
-          if verify(v) then
-            return true
-          end
         end
       end
 
       return false
     end
 
-    return verify(obj)
+    return traverse(obj)
   end
 }
 
